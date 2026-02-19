@@ -1,0 +1,35 @@
+---
+title: "fmw_mpt"
+author: "Bartosz Chmiela"
+format: revealjs
+server: shiny
+---
+
+```{r setup}
+pkgload::load_all()
+```
+
+# Latest price
+```{r}
+shiny::textOutput("last")
+```
+
+```{r latest}
+#| context: server
+
+slide_name <- shiny::reactiveVal()
+
+last <- shiny::reactive({
+  shiny::invalidateLater(1000)
+  print("test")
+  last_price()
+})
+
+output$last <- shiny::renderText(last())
+```
+
+# Second slide
+```{r second}
+
+```
+
