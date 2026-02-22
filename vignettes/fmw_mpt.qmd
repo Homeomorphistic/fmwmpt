@@ -1,13 +1,23 @@
 ---
-title: "fmw_mpt"
+title: "Czy matematyk może zostać wilkiem z Wall Street?"
+subtitle: "O tym jak racjonalnie podejmować ryzyko."
 author: "Bartosz Chmiela"
-format: revealjs
+affiliation: "Starszy analityk ds. aktuarialnych, Aviva"
+format:
+  revealjs:
+    theme: white
 server: shiny
 ---
 
 ```{r setup}
 pkgload::load_all()
 ```
+
+# Zastrzeżenie
+
+Niniejsza prezentacja ma charakter wyłącznie edukacyjny i nie stanowi rekomendacji finansowej.
+Żadna część tego materiału nie powinna być traktowana jako doradztwo inwestycyjne ani jako podstawa
+do podejmowania decyzji inwestycyjnych lub transakcji na rynkach finansowych.
 
 # Latest price
 ```{r}
@@ -26,10 +36,5 @@ last <- shiny::reactive({
 })
 
 output$last <- shiny::renderText(last())
-```
-
-# Second slide
-```{r second}
-
 ```
 
