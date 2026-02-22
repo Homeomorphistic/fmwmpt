@@ -1,17 +1,17 @@
 Package: fmwmpt
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Modern Portfolio Theory Presentation via Quarto for FMW
 Version: 0.1.0
 Authors@R: c(
     person(
-      "Jane", "Doe",
-      email = "jane@example.com",
+      "Bartosz", "Chmiela",
+      email = "chmiela.bartosz@gmail.com",
       role = c("aut", "cre")
     )
   )
-Description: More about what it does (maybe more than one line).
-    Continuation lines should be indented.
-License: What license is it under?
+Description: Provides tools for building interactive Quarto Shiny presentation
+    focused on Modern Portfolio Theory analysis.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends: 
