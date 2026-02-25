@@ -15,11 +15,63 @@ pkgload::load_all()
 
 # Zastrzeżenie
 
-Niniejsza prezentacja ma charakter wyłącznie edukacyjny i nie stanowi rekomendacji finansowej.
-Żadna część tego materiału nie powinna być traktowana jako doradztwo inwestycyjne ani jako podstawa
-do podejmowania decyzji inwestycyjnych lub transakcji na rynkach finansowych.
+Niniejsza prezentacja ma charakter wyłącznie edukacyjny i nie stanowi rekomendacji finansowej. Żadna część tego materiału nie powinna być traktowana jako doradztwo inwestycyjne ani jako podstawa do podejmowania decyzji inwestycyjnych lub transakcji na rynkach finansowych.
+
+# Co to znaczy zostać wilkiem z Wall Street?
+:::{.incremental}
+- bogactwo?
+- inwestowanie na giełdzie?
+- przestrzegając prawa?
+- jak wykorzystać do tego matematykę?
+- clickbait
+:::
+
+# Jak matematyk zadałby takie pytanie?
+:::{.incremental}
+- Mamy dostępne papiery wartościowe na giełdzie
+- Które z nich wybrać, żeby zyskać najwięcej?
+- I najmniej ryzykować?
+:::
+
+# Formalizacja problemu
+$$
+\begin{equation}
+    \begin{aligned}
+        & \underset{w}{\text{max}} & & \mu(w) \quad \text{(Zwrot)} \\
+        & \text{pod warunkiem} & & \sigma(w) \leq const \quad \text{(Ryzyko)}
+    \end{aligned}
+\end{equation}
+$$
+
+# albo może?
+$$
+\begin{equation}
+    \begin{aligned}
+        & \underset{w}{\text{min}} & & \sigma(w) \quad \text{(Ryzyko)} \\
+        & \text{pod warunkiem} & & \mu(w) \geq const \quad \text{(Zwrot)}
+    \end{aligned}
+\end{equation}
+$$
+
+# Współczesna teoria portfelowa
+- Papiery wartościowe,
+- Ryzyko i zwrot,
+- Portfel rynkowy,
+- Optymalna inwestycja
+
+:::{.notes}
+Badanie optymalnej alokacji majątku pomiędzy poszczególne aktywa w portfelu inwestycyjnym, oparte na dwuetapowym celu maksymalizacji stopy zwrotu przy jednoczesnej minimalizacji ryzyka.
+:::
+
+#
+![](images/stonks.jpg)
+
+
+
+
 
 # Latest price
+
 ```{r}
 shiny::textOutput("last")
 ```
@@ -31,10 +83,15 @@ slide_name <- shiny::reactiveVal()
 
 last <- shiny::reactive({
   shiny::invalidateLater(1000)
-  print("test")
   last_price()
 })
 
 output$last <- shiny::renderText(last())
 ```
 
+# Źródła
+
+Capiński M. J., Kopp, E., Portfolio Theory and Risk Management
+
+# Dziękuję za uwagę
+![](images/stonks_bc.jpg)
