@@ -31,6 +31,7 @@ Niniejsza prezentacja ma charakter wyłącznie edukacyjny i nie stanowi rekomend
 - Mamy dostępne papiery wartościowe na giełdzie
 - Które z nich wybrać, żeby zyskać najwięcej?
 - I najmniej ryzykować?
+- Jak to sformalizować problem?
 :::
 
 # Formalizacja problemu
@@ -54,10 +55,10 @@ $$
 $$
 
 # Współczesna teoria portfelowa
-- Papiery wartościowe,
-- Ryzyko i zwrot,
-- Portfel rynkowy,
-- Optymalna inwestycja
+1. Papiery wartościowe,
+2. Ryzyko i zwrot,
+3. Portfel rynkowy,
+4. Optymalna inwestycja
 
 :::{.notes}
 Badanie optymalnej alokacji majątku pomiędzy poszczególne aktywa w portfelu inwestycyjnym, oparte na dwuetapowym celu maksymalizacji stopy zwrotu przy jednoczesnej minimalizacji ryzyka.
@@ -66,7 +67,40 @@ Badanie optymalnej alokacji majątku pomiędzy poszczególne aktywa w portfelu i
 #
 ![](images/stonks.jpg)
 
+# Papiery wartościowe
+:::{.incremental}
+- akcje
+- obligacje
+- kontrakty
+- fundusze inwestycyjny notowany na giełdzie (exchange-traded fund, ETF)
+:::
 
+# Akcje
+![Primate Economics]{images/stocks_banana.jpg}
+
+# Akcje
+:::{.incremental}
+- polskie (GPW, WIG20):
+  - ALE,
+  - CDR,
+  - ZAB 
+- amerykańskie (NYSE, SP500): 
+  - NVDA,
+  - AAPL,
+  - AMZN 
+:::
+  
+# Obligacje
+:::{.incremental}
+- skarbowe:
+  - Skarbowe Papiery Wartościowe (PL),
+  - Bunds (DE),
+  - OAT (FR),
+  - Gilts (UK),
+  - Treasuries (USA)
+- korporacyjne
+:::
+# Kontrakty
 
 
 
