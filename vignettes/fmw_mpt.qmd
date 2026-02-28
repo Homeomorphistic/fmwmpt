@@ -13,11 +13,18 @@ server: shiny
 pkgload::load_all()
 ```
 
-# Zastrzeżenie
+## Zastrzeżenie
 
 Niniejsza prezentacja ma charakter wyłącznie edukacyjny i nie stanowi rekomendacji finansowej. Żadna część tego materiału nie powinna być traktowana jako doradztwo inwestycyjne ani jako podstawa do podejmowania decyzji inwestycyjnych lub transakcji na rynkach finansowych.
 
-# Co to znaczy zostać wilkiem z Wall Street?
+#
+![Wilk z Wall Street (film 2013), źródło: wikipedia](images/wolf_of_wall_street.jpg){fig-align="center"}
+
+:::{.notes}
+American biographical dark comedy crime film co-produced and directed by Martin Scorsese
+:::
+
+## Co to znaczy zostać wilkiem z Wall Street?
 :::{.incremental}
 - bogactwo?
 - inwestowanie na giełdzie?
@@ -26,7 +33,7 @@ Niniejsza prezentacja ma charakter wyłącznie edukacyjny i nie stanowi rekomend
 - clickbait
 :::
 
-# Jak matematyk zadałby takie pytanie?
+## Jak matematyk zadałby takie pytanie?
 :::{.incremental}
 - Mamy dostępne papiery wartościowe na giełdzie
 - Które z nich wybrać, żeby zyskać najwięcej?
@@ -34,7 +41,7 @@ Niniejsza prezentacja ma charakter wyłącznie edukacyjny i nie stanowi rekomend
 - Jak to sformalizować problem?
 :::
 
-# Formalizacja problemu
+## Formalizacja problemu
 $$
 \begin{equation}
     \begin{aligned}
@@ -44,7 +51,7 @@ $$
 \end{equation}
 $$
 
-# albo może?
+## a może inaczej?
 $$
 \begin{equation}
     \begin{aligned}
@@ -55,6 +62,8 @@ $$
 $$
 
 # Współczesna teoria portfelowa
+
+## Współczesna teoria portfelowa
 1. Papiery wartościowe,
 2. Ryzyko i zwrot,
 3. Portfel rynkowy,
@@ -64,21 +73,36 @@ $$
 Badanie optymalnej alokacji majątku pomiędzy poszczególne aktywa w portfelu inwestycyjnym, oparte na dwuetapowym celu maksymalizacji stopy zwrotu przy jednoczesnej minimalizacji ryzyka.
 :::
 
-#
+## Harry Markowitz
+:::: {.columns}
+
+::: {.column width="67%"}
+![źródło: Investopedia.com](images/markowitz_investopedia.webp)
+:::
+
+::: {.column width="33%"}
+![źródło: Amazon.com](images/markowitz_portfolio_selection.jpg)
+:::
+::::
+
+
+##
 ![](images/stonks.jpg)
 
-# Papiery wartościowe
+# 1. Papiery wartościowe
+
+## Papiery wartościowe
 :::{.incremental}
 - akcje
 - obligacje
-- kontrakty
+- kontrakty, towary, kryptowaluty
 - fundusze inwestycyjny notowany na giełdzie (exchange-traded fund, ETF)
 :::
 
-# Akcje
-![Primate Economics]{images/stocks_banana.jpg}
+## Akcje
+![źródło: YouYube, Primate Economics, Investing Explained with Bananas](images/pe_stocks.png)
 
-# Akcje
+## Akcje (c.d.)
 :::{.incremental}
 - polskie (GPW, WIG20):
   - ALE,
@@ -89,9 +113,11 @@ Badanie optymalnej alokacji majątku pomiędzy poszczególne aktywa w portfelu i
   - AAPL,
   - AMZN 
 :::
-  
-# Obligacje
-:::{.incremental}
+
+## Obligacje
+![źródło: YouYube, Primate Economics, Investing Explained with Bananas](images/pe_bonds.png)
+
+## Obligacje (c.d.)
 - skarbowe:
   - Skarbowe Papiery Wartościowe (PL),
   - Bunds (DE),
@@ -99,12 +125,47 @@ Badanie optymalnej alokacji majątku pomiędzy poszczególne aktywa w portfelu i
   - Gilts (UK),
   - Treasuries (USA)
 - korporacyjne
+
+## Kontrakty, towary i krypto
+:::: {.columns}
+
+::: {.column width="50%"}
+![źródło: YouYube, Primate Economics, Investing Explained with Bananas](images/pe_commodities.png)
 :::
-# Kontrakty
 
+::: {.column width="50%"}
+![źródło: YouYube, Primate Economics, Investing Explained with Bananas](images/pe_crypto.png)
+:::
+::::
 
+## Kontrakty, towary i krypto (c.d.)
+- kontrakty na:
+  - waluty (EURPLN, USDEUR),
+  - indeksy (WIG20, NASDAQ, SP500)
+- towary:
+  - złoto (XAUUSD, XAUPLN)
+  - świńskie tusze (? Lean Hog futures)
+- kryptowaluty? (BTC, ETH)
 
-# Latest price
+## Exchange-traded fund, ETF
+![źródło: YouYube, Primate Economics, Investing Explained with Bananas](images/pe_index_funds.png)
+
+## Exchange-traded fund, ETF (c.d.)
+- globalne:
+  - akcje (VWRA.L, VWCE.DE)
+  - obligacje (AGGU.L, EUNA.DE)
+- indeksy (WIG20, SP500)
+- sektory (AI, blockchain, finanse)
+- towary i inne (złoto, BTC)
+
+## Losowość
+
+# 2. Ryzyko i zwrot
+
+## Ryzyko i zwrot
+![źródło: stooq.pl](images/sq_tbsp_wig.png)
+
+## Latest price
 
 ```{r}
 shiny::textOutput("last")
@@ -123,9 +184,9 @@ last <- shiny::reactive({
 output$last <- shiny::renderText(last())
 ```
 
-# Źródła
+## Źródła
 
 Capiński M. J., Kopp, E., Portfolio Theory and Risk Management
 
-# Dziękuję za uwagę
+## Dziękuję za uwagę
 ![](images/stonks_bc.jpg)
