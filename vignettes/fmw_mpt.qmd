@@ -158,31 +158,23 @@ Badanie optymalnej alokacji majątku pomiędzy poszczególne aktywa w portfelu i
 - sektory (AI, blockchain, finanse)
 - towary i inne (złoto, BTC)
 
-## Losowość
+## Losowość {.smaller}
+
+```{r}
+mod_price_plots_ui("price_plots")
+```
+
+```{r}
+#| context: server
+mod_price_plots_server("price_plots")
+```
+
 
 # 2. Ryzyko i zwrot
 
 ## Ryzyko i zwrot
 ![źródło: stooq.pl](images/sq_tbsp_wig.png)
 
-## Latest price
-
-```{r}
-shiny::textOutput("last")
-```
-
-```{r latest}
-#| context: server
-
-slide_name <- shiny::reactiveVal()
-
-last <- shiny::reactive({
-  shiny::invalidateLater(1000)
-  last_price()
-})
-
-output$last <- shiny::renderText(last())
-```
 
 ## Źródła
 
