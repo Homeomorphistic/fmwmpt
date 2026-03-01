@@ -203,7 +203,7 @@ $$
 
 $$
 \begin{align}
-\mathbb{E}[S_t] &= \sum_{\omega \in \Omega} S_t(\omega)\,P(\omega) \\
+\mathbb{E}(S_t) &= \sum_{\omega \in \Omega} S_t(\omega)\,P(\omega) \\
                 &= S_t(\omega_1)P(\omega_1) + S_t(\omega_2)P(\omega_2) \\
                 &= 50 \cdot 0.6 + 100 \cdot 0.4 \\
                 &= 70.
@@ -213,7 +213,7 @@ $$
 ## Prawo Wielkich Liczb**
 Jeżeli $X_i$ to niezależne pomiary losowe** to:
 $$
-\frac{1}{n} \sum_{i=n}^{\infty} X_i \to \mathbb{E}[X_1],
+\frac{1}{n} \sum_{i=n}^{\infty} X_i \to \mathbb{E}(X_1),
 $$
 co pozwala nam na przybliżenie wartości oczekiwanej średnią artymetyczną!**
 
@@ -224,7 +224,7 @@ K_t = \frac{S_t - S_0}{S_0},
 $$
 a ze względu na liniowość wartości oczekiwanej
 $$
-\mu = \mathbb{E}[K_t] = \frac{\mathbb{E}[S_t] - S_0}{S_0}.
+\mu = \mathbb{E}(K_t) = \frac{\mathbb{E}(S_t) - S_0}{S_0}.
 $$
 
 ## Przykłady {.smaller}
@@ -238,6 +238,32 @@ mod_last_returns_server("last_returns")
 
 ## Ryzyko
 ![źródło: stooq.pl](images/sq_tbsp_wig.png)
+
+## Ryzyko (c.d.)
+- Ryzyko wynika z niepewności przyszłych wartości pap. wart.
+- Większy rozrzut możliwych wyników, wyższe ryzyko.
+- Jedną miarą ryzyka jest zmienność (rozproszenie) stóp zwrotu.
+- Inwestorzy maksymalizują zwrot przy ograniczaniu ryzyka.
+
+
+## Wariancja i odchylenie
+Wariancja zwrotu:
+$$
+\mathrm{Var}(X) = \mathbb{E}(K - \mu)^2,
+$$
+i odchylenie standarowe:
+$$
+\sigma = \sqrt{\mathrm{Var}(X)}.
+$$
+
+## Przykłady {.smaller}
+```{r}
+mod_stocks_summary_ui("summary")
+```
+```{r}
+#| context: server 
+mod_stocks_summary_server("summary")
+```
 
 
 ## Źródła
