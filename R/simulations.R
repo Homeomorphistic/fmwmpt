@@ -33,3 +33,13 @@ simulate_gbm <- function(S0, mu, sigma, n_days, n_sims = 100, dt = 1/252) {
 
   rbind(S0, price_paths)
 }
+
+generate_correlated_normals <- function(n, mu1 = 0, mu2 = 0, sigma1 = 1, sigma2 = 1, rho) {
+  z1 <- rnorm(n)
+  z2 <- rnorm(n)
+
+  x1 <- mu1 + sigma1 * z1
+  x2 <- mu2 + sigma2 * (rho * z1 + sqrt(1 - rho^2) * z2)
+
+  data.frame(x1, x2)
+}

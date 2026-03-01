@@ -28,3 +28,10 @@ plot_normal_densities <- function(mu, sigma) {
     ggplot2::labs(color = "distribution", x = "x", y = "density") +
     ggplot2::theme(legend.position = "top")
 }
+
+plot_correlated_normals <- function(rho) {
+  generate_correlated_normals(1000, rho = rho) |>
+    ggplot2::ggplot(ggplot2::aes(x = x1, y = x2)) +
+    ggplot2::geom_point(alpha = 0.3) +
+    ggplot2::geom_smooth(method = "lm", color = "black")
+}

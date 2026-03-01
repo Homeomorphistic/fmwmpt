@@ -3,6 +3,7 @@ title: "Czy matematyk może zostać wilkiem z Wall Street?"
 subtitle: "O tym jak racjonalnie podejmować ryzyko."
 author: "Bartosz Chmiela"
 affiliation: "Starszy analityk ds. aktuarialnych, Aviva"
+lang: pl
 format:
   revealjs:
     theme: white
@@ -72,7 +73,7 @@ $$
 ## Współczesna teoria portfelowa
 1. Papiery wartościowe,
 2. Ryzyko i zwrot,
-3. Portfel rynkowy,
+3. Portfele pap. wart.,
 4. Optymalna inwestycja
 
 :::{.notes}
@@ -249,11 +250,20 @@ mod_last_returns_server("last_returns")
 ## Wariancja i odchylenie
 Wariancja zwrotu:
 $$
-\mathrm{Var}(X) = \mathbb{E}(K - \mu)^2,
+\mathrm{Var}(K) = \mathbb{E}(K - \mu)^2,
 $$
 i odchylenie standarowe:
 $$
-\sigma = \sqrt{\mathrm{Var}(X)}.
+\sigma = \sqrt{\mathrm{Var}(K)}.
+$$
+
+## Estymator wariancji
+$$
+S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2,
+$$
+gdzie
+$$
+\bar{X} = \frac{1}{n} \sum_{i=1}^n X_i
 $$
 
 ## Przykłady {.smaller}
@@ -274,6 +284,125 @@ mod_normal_densities_ui("densities")
 #| context: server 
 mod_normal_densities_server("densities")
 ```
+
+## Która inwestycja jest lepsza?
+![źródło: Capiński M. J., Kopp, E., Portfolio Theory and Risk Management](images/mu_sigma_assets.png)
+
+# 3. Portfele zawierające dwa aktywa
+
+## Przykład dywersyfikacji
+Niech $\Omega = \{\omega_1, \omega_2\}$, $S_0 = 200$, $R_0 = 300$. Przyjmijmy, że
+
+$$
+P(\{\omega_1\}) = P(\{\omega_2\}) = 50\%,
+$$
+oraz że
+$$
+\begin{align*}
+S_t(\omega_1) &= 260, & S_t(\omega_2) &= 180, \\
+R_t(\omega_1) &= 270, & R_t(\omega_2) &= 360.
+\end{align*}
+$$
+
+## Przykład dywersyfikacji (c.d.) {.smaller}
+Oczekiwane stopy zwrotu i odchylenia standardowe dla obu aktywów wynoszą
+$$
+\begin{align*}
+\mu_1 &= 10\%, & \sigma_1 &= 20\%, \\
+\mu_2 &= 5\%,  & \sigma_2 &= 15\%.
+\end{align*}
+$$
+Przyjmijmy, że wydajemy $V_0 = 500$, kupując jedną akcję spółki $S$ oraz jedną akcję spółki $R$. W czasie $t$ będziemy mieli
+$$
+\begin{align*}
+V_t(\omega_1) &= 260 + 270 = 530, \\
+V_t(\omega_2) &= 180 + 360 = 540.
+\end{align*}
+$$
+Oczekiwana stopa zwrotu z inwestycji wynosi $7\%$, a odchylenie standardowe jedynie $1\%$.
+
+##
+![](images/math-hmm.gif)
+
+## Wagi
+Przyjmijmy, że mamy $V_0$ do wydania na akcje $S$ oraz $R$, wtedy:
+$$
+V_0 = xS_0 + yR_0,
+$$
+gdzie $x,y$ to ilość kupionych akcji.
+Ze wzgledu na różną skalę $x,y$ oraz cen akcji, wygodniej nam pracować z wagami:
+$$
+w_s = \frac{xS_0}{V_0}, \quad w_r = \frac{xR_0}{V_0}.
+$$
+Dzieki temu mamy $w_s + w_r = 100\%$.
+
+
+## Ograniczenia wag
+Z definicji mamy $w_s + w_r = 1$. Ale czy możemy mieć:
+
+  - ułamkową liczbę akcji?
+  - ujemną liczbę akcji?
+
+
+## Krótka sprzedaż
+  1. Pożycz jedną akcję $S$, tzn. $x = -1$.
+  2. Sprzedaj akcję za $S_0 = 100$, dzięki czemu $V_0 = 100$. 
+  3. Po czasie $t$ odkup akcję $S$:
+      - cena spadła $S_t = 90$ i zyskaj $V_t = 100 - 90 =10$,
+      - cena urosła $S_t = 105$ i strać $V_t = 100 - 105 = -5$,
+
+
+## Stopa zwrotu portfela
+::: {#thm-portfolio-return}
+
+
+Stopa zwrotu $K(w)$ portfela składającego się z dwóch aktywów jest średnią ważoną
+$$K_w = w_1 K_1 + w_2 K_2,$$
+gdzie $w_1$ i $w_2$ są wagami, a $K_1$ i $K_2$ stopami zwrotu z obu składników.
+:::
+
+::: {.proof .fragment}
+Oczywiste.
+:::
+
+## Wartość oczekiwana i wariancja portfela
+::: {#thm-portfolio}
+Wartość oczekiwana zwrotu i zmienność portfela składającego się z dwóch aktywów
+$$
+\begin{align}
+  \mu_w &= \mathbb{E}(K_w) = w_1 \mu_1 + w_2 \mu_2, \\
+  \sigma^2_w &= \text{Var}(K_w) = w_1^2 \sigma_1^2 + w_2^2 \sigma_2^2 + 2w_1 w_2 \rho_{12}\sigma_1\sigma_2.
+\end{align}
+$$
+gdzie $\mu_1, \mu_2$ są wartościami oczekiwanymi i $\sigma_1, \sigma_2$ są wariancjami stóp zwrotu obu składników,
+a $\rho_{12}$ korelacją między nimi.
+:::
+
+::: {.proof .fragment}
+Pozostawiamy czytelnikowi.
+:::
+
+## Własności korelacji
+- Mierzy siłę i kierunek liniowej zależności między dwiema zmiennymi.
+- Przyjmuje wartości od -1 do 1.
+- Dodatnia oznacza, że zmienne rosną razem
+- Ujemna oznacza, że jedna rośnie gdy druga maleje
+- Zerowa oznacza, że nie ma między nimi liniowej zależności.
+
+## Wizualizacja korelacji
+```{r}
+shiny::sliderInput("rho", "rho", min = -1, max = 1, value = 0, step = 0.01, post = "%")
+shiny::plotOutput("correlated_normals")
+```
+```{r}
+#| context: server 
+output$correlated_normals <- shiny::renderPlot(plot_correlated_normals(input$rho))
+```
+
+# 4. Optymalna inwestycja
+
+## 
+![](images/the-hangover-zach-galifianakis.gif)
 
 ## Źródła
 
