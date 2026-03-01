@@ -391,18 +391,54 @@ Pozostawiamy czytelnikowi.
 
 ## Wizualizacja korelacji
 ```{r}
-shiny::sliderInput("rho", "rho", min = -1, max = 1, value = 0, step = 0.01, post = "%")
-shiny::plotOutput("correlated_normals")
+mod_correlated_normals_ui("correlation")
 ```
 ```{r}
 #| context: server 
-output$correlated_normals <- shiny::renderPlot(plot_correlated_normals(input$rho))
+mod_correlated_normals_server("correlation")
 ```
 
 # 4. Optymalna inwestycja
 
 ## 
 ![](images/the-hangover-zach-galifianakis.gif)
+
+## Zbiór osiągalny
+Z definicji $w_1 + w_2 = 1$, stąd $w_2 = 1 - w_1$ i możemy porzucić indeksy:
+$$
+\begin{align}
+  \mu_w &= w \mu_1 + (1-w) \mu_2, \\
+  \sigma^2_w &=  w^2 \sigma_1^2 + (1-w)^2 \sigma_2^2 + 2w(1-w) \rho_{12}\sigma_1\sigma_2.
+\end{align}
+$$
+Z wcześniej wiemy, że nie ma ograniczeń na wagi, tj. $w \in \mathbb{R}$. Jeżeli ograniczymy ograniczymy
+wagi do $w \in [0,1]$ nie będziemy potrzebowali krótkej sprzedaży.
+
+## Zbiór osiągalny (c.d.)
+:::: {.columns}
+
+::: {.column width="20%"}
+```{r}
+mod_attainable_set_sliders_ui("attainable")
+```
+:::
+
+::: {.column width="80%"}
+```{r}
+mod_attainable_set_plot_ui("attainable")
+```
+:::
+
+::::
+
+```{r}
+#| context: server 
+mod_attainable_set_server("attainable")
+```
+
+
+## Stopa wolna od ryzyka
+Aktywo wolne od ryzyka, to takie, które $\mu>0$ oraz $\sigma=0$.
 
 ## Źródła
 

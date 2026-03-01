@@ -35,3 +35,36 @@ plot_correlated_normals <- function(rho) {
     ggplot2::geom_point(alpha = 0.3) +
     ggplot2::geom_smooth(method = "lm", color = "black")
 }
+
+plot_attainable_set <- function(mu_1, mu_2, sigma_1, sigma_2, rho) {
+  attainable_with_short <- attainable_set(mu_1, mu_2, sigma_1, sigma_2, rho)
+  attainable_without_short <- attainable_set(mu_1, mu_2, sigma_1, sigma_2, rho, short_selling = FALSE)
+
+  ggplot2::ggplot(data = attainable_with_short, ggplot2::aes(x = sigma, y = mu)) +
+    ggplot2::geom_path(linetype = "dashed") +
+    ggplot2::geom_path(data = attainable_without_short) +
+
+    ggplot2::labs(title = "Zbiór osiągalny", x = expression(sigma), y = expression(mu)) +
+    ggplot2::xlim(0, 1.1*max(sigma_1, sigma_2)) +
+    ggplot2::ylim(0, 1.1*max(mu_1, mu_2)) +
+
+    ggplot2::geom_point(ggplot2::aes(x = sigma_1, y = mu_1)) +
+    ggplot2::geom_text(ggplot2::aes(x = sigma_1, y = mu_1, label = "paste('(', mu[1], ',', sigma[1], ')')"),
+                       parse = TRUE, nudge_x = -.05, nudge_y = -.05) +
+
+    ggplot2::geom_point(ggplot2::aes(x = sigma_2, y = mu_2)) +
+    ggplot2::geom_text(ggplot2::aes(x = sigma_2, y = mu_2, label = "paste('(', mu[2], ',', sigma[2], ')')"),
+                       parse = TRUE, nudge_x = -.05, nudge_y = .05)
+}
+
+plot_min_var <- function(mu_1, mu_2, sigma_1, sigma_2, rho) {
+  mvp_weights <- minimal_variance_portfolio(sigma_1, sigma_2, rho)
+
+  mvp_mu <- sum(c(mu_1, mu_2) * mvp_weights)
+  mvp_sigma <- portfolio_volatility(sigma_1, sigma_2, rho, weights = mvp_weights)
+
+  plot_attainable_set(mu_1, mu_2, sigma_1, sigma_2, rho) +
+    ggplot2::geom_point(ggplot2::aes(x = mvp_sigma, y = mvp_mu)) +
+    ggplot2::geom_text(ggplot2::aes(x = mvp_sigma, y = mvp_mu, label = "MVP"),
+                       nudge_x = -.05, nudge_y = .05)
+}
