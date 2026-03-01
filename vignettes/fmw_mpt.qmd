@@ -438,7 +438,18 @@ mod_attainable_set_server("attainable")
 
 
 ## Stopa wolna od ryzyka
-Aktywo wolne od ryzyka, to takie, które $\mu>0$ oraz $\sigma=0$.
+Aktywo wolne od ryzyka, to takie, które $\mu=R>0$ oraz $\sigma=0$. Rozważmy portfel, w którym pierwsze
+aktywo jest wolne od ryzyka. Wtedy
+$$
+\begin{align}
+  \mu_w &= w R + (1-w) \mu_2, \\
+  \sigma^2_w &=  w^2 \sigma_2^2,
+\end{align}
+$$
+co daje:
+$$
+\sigma^2_w =  |w \sigma_2|,
+$$
 
 ## Źródła
 
