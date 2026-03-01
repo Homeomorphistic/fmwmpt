@@ -11,6 +11,7 @@ server: shiny
 
 ```{r setup}
 pkgload::load_all()
+library(shinyWidgets)
 ```
 
 ## Zastrzeżenie
