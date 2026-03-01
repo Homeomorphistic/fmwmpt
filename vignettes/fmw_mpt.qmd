@@ -62,6 +62,11 @@ $$
 \end{equation}
 $$
 
+## Cel
+1. Zdefiniować zwrot/zysk $\mu$.
+2. Zdefiniować ryzyko $\sigma$.
+3. Znaleźć optymalne $w$.
+
 # Współczesna teoria portfelowa
 
 ## Współczesna teoria portfelowa
@@ -173,7 +178,65 @@ mod_price_plots_server("price_plots")
 
 # 2. Ryzyko i zwrot
 
-## Ryzyko i zwrot
+## Zwrot
+- Celem inwestora jest wzrost majątku.
+- Wartości końcowe pap. wart. są niepewne*.
+- Stopy zwrotu modeluje się jako zmienne losowe.
+- Jedną miarą oceny jest wartość oczekiwana stopy zwrotu.
+
+
+## Notacja
+$S_0$ to obecna (znana) cena, $S_t$ to przyszła (nieznana) cena po okresie $t$, którą nazywamy zmienną losową:
+
+$$
+S_t: \Omega \to \left[0, \infty \right),
+$$
+np. $S_t(\omega_1) = 50$, $S_t(\omega_2) = 100$.
+
+Scenariusze $\omega_1, \omega_2, \ldots$, mają swoje prawdopodobieństwa:
+
+$$
+P(\omega_1) = 60\%, \quad P(\omega_2) = 40\%.
+$$
+
+## Wartość oczekiwana zm. los.
+
+$$
+\begin{align}
+\mathbb{E}[S_t] &= \sum_{\omega \in \Omega} S_t(\omega)\,P(\omega) \\
+                &= S_t(\omega_1)P(\omega_1) + S_t(\omega_2)P(\omega_2) \\
+                &= 50 \cdot 0.6 + 100 \cdot 0.4 \\
+                &= 70.
+\end{align}
+$$
+
+## Prawo Wielkich Liczb**
+Jeżeli $X_i$ to niezależne pomiary losowe** to:
+$$
+\frac{1}{n} \sum_{i=n}^{\infty} X_i \to \mathbb{E}[X_1],
+$$
+co pozwala nam na przybliżenie wartości oczekiwanej średnią artymetyczną!**
+
+## Zwrot
+Zwrot jest zmienną losową, bo nie jest znane $S_t$:
+$$
+K_t = \frac{S_t - S_0}{S_0},
+$$
+a ze względu na liniowość wartości oczekiwanej
+$$
+\mu = \mathbb{E}[K_t] = \frac{\mathbb{E}[S_t] - S_0}{S_0}.
+$$
+
+## Przykłady {.smaller}
+```{r}
+mod_last_returns_ui("last_returns")
+```
+```{r}
+#| context: server 
+mod_last_returns_server("last_returns")
+```
+
+## Ryzyko
 ![źródło: stooq.pl](images/sq_tbsp_wig.png)
 
 
