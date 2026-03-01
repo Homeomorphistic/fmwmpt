@@ -266,6 +266,15 @@ mod_stocks_summary_server("summary")
 ```
 
 
+## Jak rozumieć $\mu$ i $\sigma$?
+```{r}
+mod_normal_densities_ui("densities")
+```
+```{r}
+#| context: server 
+mod_normal_densities_server("densities")
+```
+
 ## Źródła
 
 Capiński M. J., Kopp, E., Portfolio Theory and Risk Management
