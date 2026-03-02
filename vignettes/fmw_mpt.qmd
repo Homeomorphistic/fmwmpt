@@ -528,6 +528,47 @@ mod_rw_mp_plot_ui("rw_mp")
 mod_rw_mp_server("rw_mp")
 ```
 
+# Wnioski
+
+## Inwestorzy w świecie MPT
+Zakładamy, że:
+
+- rynek składa się dwóch papierów wartościowych,
+- inwestorzy są racjonalni,
+- inwestorzy używają tych samych danych liczbowych.
+
+Zatem, inwestorzy dokonują tych samych obliczeń i dochodzą do tej samej proporcji w portfelu rynkowym.
+
+**Waga każdego aktywa w portfelu rynkowym odzwierciedla jego udział w całkowitej wartości rynku!**
+
+
+## Dlaczego?
+Ponieważ portfel rynkowy jest agregacją wszystkich portfeli inwestorów, z których każdy jest identyczny, również będzie miał te same wagi.
+
+Dlatego jeśli wszyscy inwestorzy wybierają ten sam portfel, musi to być portfel rynkowy, czyli wartość całego dostępnego do inwestowania rynku.
+
+
+## Czy można zostać wilkiem?
+
+:::{.incremental}
+- można **oczekiwać** większych zwrotów...
+- przy zwiększonym ryzyku!
+- oraz wielu założeniach!
+:::
+
+## Zastrzeżenia do teorii {.smaller}
+
+1. Zachowanie indywidualne
+   1. Inwestorzy są racjonalni i optymalizują portfel w ujęciu średnia-wariancja.
+   2. Wspólny horyzont planowania to jeden okres.
+   3. Wszyscy inwestorzy korzystają z identycznych zestawów danych wejściowych. Oczekiwania są zgodne z założeniem, że wszystkie istotne informacje są publicznie dostępne.
+
+2. Struktura rynku
+   1. Wszystkie aktywa są publicznie dostępne i notowane na giełdach.
+   2. Inwestorzy mogą pożyczać lub lokować środki po wspólnej stopie wolnej od ryzyka oraz zajmować krótkie pozycje w notowanych papierach.
+   3. Brak podatków.
+   4. Brak kosztów transakcyjnych.
+
 ## Źródła
 
 Capiński M. J., Kopp, E., Portfolio Theory and Risk Management
