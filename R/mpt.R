@@ -45,4 +45,21 @@ portfolio_volatility <- function(sigma_1, sigma_2, rho, weights) {
   return(sqrt(as.numeric(t(weights) %*% covariances %*% weights)))
 }
 
+market_portfolio <- function(mu_1, mu_2, sigma_1, sigma_2, rho, risk_free) {
+  correlations <- matrix(c(1, rho, rho, 1), 2, 2)
+  covariances <- cor_to_cov(volatilities = c(sigma_1, sigma_2),
+                                 correlations = correlations)
+  c_inv <- solve(covariances)
+  ones <- rep(x = 1, times = ncol(correlations))
+
+  excess_returns <- c(mu_1, mu_2) - risk_free
+  num <- c_inv %*% excess_returns
+  den <- as.numeric(t(ones) %*% c_inv %*% excess_returns)
+  weights <- as.vector(num / den)
+
+  return(weights)
+}
+
+
+
 

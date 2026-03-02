@@ -68,3 +68,25 @@ plot_min_var <- function(mu_1, mu_2, sigma_1, sigma_2, rho) {
     ggplot2::geom_text(ggplot2::aes(x = mvp_sigma, y = mvp_mu, label = "MVP"),
                        nudge_x = -.05, nudge_y = .05)
 }
+
+plot_market_portfolio <- function(mu_1, mu_2, sigma_1, sigma_2, rho, risk_free) {
+  mp_weights <- market_portfolio(mu_1, mu_2, sigma_1, sigma_2, rho, risk_free)
+
+  mp_mu <- sum(c(mu_1, mu_2) * mp_weights)
+  mp_sigma <- portfolio_volatility(sigma_1, sigma_2, rho, weights = mp_weights)
+
+  cml <- function(sigma) {
+    risk_free + (mp_mu-risk_free) / mp_sigma * sigma
+  }
+  sigma_cml <- seq(0, max(sigma_1, sigma_2), length.out = 100)
+  cml_data <- data.frame(sigma_c = sigma_cml, mu_c = cml(sigma_cml))
+
+  plot_min_var(mu_1, mu_2, sigma_1, sigma_2, rho) +
+    ggplot2::geom_point(ggplot2::aes(x = mp_sigma, y = mp_mu)) +
+    ggplot2::geom_text(ggplot2::aes(x = mp_sigma, y = mp_mu, label = "MP"),
+                       nudge_x = -.05, nudge_y = .05) +
+    ggplot2::geom_path(data = cml_data, ggplot2::aes(x = sigma_c, y = mu_c)) +
+
+    ggplot2::theme_classic()
+}
+
