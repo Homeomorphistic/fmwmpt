@@ -2,8 +2,8 @@ mod_market_portfolio_sliders_ui <- function(id) {
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::sliderInput(ns("rho"), "rho", min = -1, max = 1, value = 0, step = 0.01, post = "%"),
-    shiny::sliderInput(ns("risk_free"), "stopa", min = 0, max = 0.2, value = 0.05, step = 0.01, post = "%"),
-    shiny::sliderInput(ns("mu_1"), "mu_1", min = 0, max = 0.3, value = 0.05, step = 0.01, post = "%"),
+    shiny::sliderInput(ns("risk_free"), "stopa", min = 0, max = 0.2, value = 0.04, step = 0.01, post = "%"),
+    shiny::sliderInput(ns("mu_1"), "mu_1", min = 0, max = 0.3, value = 0.07, step = 0.01, post = "%"),
     shiny::sliderInput(ns("mu_2"), "mu_2", min = 0, max = 0.3, value = 0.15, step = 0.01, post = "%"),
     shiny::sliderInput(ns("sigma_1"), "sigma_1", min = 0, max = 0.5, value = 0.10, step = 0.01, post = "%"),
     shiny::sliderInput(ns("sigma_2"), "sigma_2", min = 0, max = 0.5, value = 0.20, step = 0.01, post = "%")

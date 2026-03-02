@@ -400,9 +400,6 @@ mod_correlated_normals_server("correlation")
 
 # 4. Optymalna inwestycja
 
-## 
-![](images/the-hangover-zach-galifianakis.gif)
-
 ## Zbiór osiągalny
 Z definicji $w_1 + w_2 = 1$, stąd $w_2 = 1 - w_1$ i możemy porzucić indeksy:
 $$
@@ -484,6 +481,51 @@ mod_market_portfolio_plot_ui("mp")
 ```{r}
 #| context: server 
 mod_market_portfolio_server("mp")
+```
+
+
+## Portfel rynkowy (c.d.)
+::: {#thm-mp-weights}
+Wagi portfela rynkowego mają postać $m = (w, 1 - w)$, gdzie
+$$
+w = \frac{c}{c + d}, \qquad 1 - w = \frac{d}{c + d}
+$$
+oraz
+$$
+c = \sigma_2^2(\mu_1 - R) - \rho_{12}\sigma_1\sigma_2(\mu_2 - R),
+$$
+
+$$
+d = \sigma_1^2(\mu_2 - R) - \rho_{12}\sigma_1\sigma_2(\mu_1 - R).
+$$
+:::
+
+
+##
+![](images/the-hangover-zach-galifianakis.gif)
+
+
+
+## Przykłady
+:::: {.columns}
+
+::: {.column width="20%"}
+```{r}
+mod_rw_mp_inputs_ui("rw_mp")
+```
+:::
+
+::: {.column width="80%"}
+```{r}
+mod_rw_mp_plot_ui("rw_mp")
+```
+:::
+
+::::
+
+```{r}
+#| context: server
+mod_rw_mp_server("rw_mp")
 ```
 
 ## Źródła

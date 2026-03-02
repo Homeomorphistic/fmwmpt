@@ -17,7 +17,7 @@ mod_attainable_set_server <- function(id) {
     id,
     function(input, output, session) {
       output$attainable_set <- shiny::renderPlot(
-        plot_attainable_set(1, 2, 1, 2, rho = input$rho)
+        plot_attainable_set(0.05, 0.15, 0.1, 0.2, rho = input$rho)
       )
     }
   )

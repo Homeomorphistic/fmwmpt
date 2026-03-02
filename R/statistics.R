@@ -25,3 +25,19 @@ stocks_summary <- function(tickers, period = "monthly") {
       volatility  = sd(return, na.rm = TRUE)
     )
 }
+
+stocks_correlation <- function(ticker1, ticker2, period = "monthly") {
+  examples |>
+    dplyr::filter(symbol %in% c(ticker1, ticker2)) |>
+    dplyr::group_by(symbol) |>
+    tidyquant::tq_transmute(
+      select     = adjusted,
+      mutate_fun = periodReturn,
+      period     = period,
+      col_rename = "return"
+    ) |>
+    dplyr::ungroup() |>
+    tidyr::pivot_wider(names_from = symbol, values_from = return) |>
+    dplyr::summarise(corr = cor(.data[[ticker1]], .data[[ticker2]], use = "complete.obs")) |>
+    dplyr::pull(corr)
+}

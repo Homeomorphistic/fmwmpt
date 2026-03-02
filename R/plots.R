@@ -50,11 +50,13 @@ plot_attainable_set <- function(mu_1, mu_2, sigma_1, sigma_2, rho) {
 
     ggplot2::geom_point(ggplot2::aes(x = sigma_1, y = mu_1)) +
     ggplot2::geom_text(ggplot2::aes(x = sigma_1, y = mu_1, label = "paste('(', mu[1], ',', sigma[1], ')')"),
-                       parse = TRUE, nudge_x = -.05, nudge_y = -.05) +
+                       parse = TRUE, nudge_x = -.005, nudge_y = -.005) +
 
     ggplot2::geom_point(ggplot2::aes(x = sigma_2, y = mu_2)) +
     ggplot2::geom_text(ggplot2::aes(x = sigma_2, y = mu_2, label = "paste('(', mu[2], ',', sigma[2], ')')"),
-                       parse = TRUE, nudge_x = -.05, nudge_y = .05)
+                       parse = TRUE, nudge_x = -.005, nudge_y = .005) +
+
+    ggplot2::theme_classic()
 }
 
 plot_min_var <- function(mu_1, mu_2, sigma_1, sigma_2, rho) {
@@ -66,7 +68,7 @@ plot_min_var <- function(mu_1, mu_2, sigma_1, sigma_2, rho) {
   plot_attainable_set(mu_1, mu_2, sigma_1, sigma_2, rho) +
     ggplot2::geom_point(ggplot2::aes(x = mvp_sigma, y = mvp_mu)) +
     ggplot2::geom_text(ggplot2::aes(x = mvp_sigma, y = mvp_mu, label = "MVP"),
-                       nudge_x = -.05, nudge_y = .05)
+                       nudge_x = -.005, nudge_y = .005)
 }
 
 plot_market_portfolio <- function(mu_1, mu_2, sigma_1, sigma_2, rho, risk_free) {
@@ -84,9 +86,10 @@ plot_market_portfolio <- function(mu_1, mu_2, sigma_1, sigma_2, rho, risk_free) 
   plot_min_var(mu_1, mu_2, sigma_1, sigma_2, rho) +
     ggplot2::geom_point(ggplot2::aes(x = mp_sigma, y = mp_mu)) +
     ggplot2::geom_text(ggplot2::aes(x = mp_sigma, y = mp_mu, label = "MP"),
-                       nudge_x = -.05, nudge_y = .05) +
-    ggplot2::geom_path(data = cml_data, ggplot2::aes(x = sigma_c, y = mu_c)) +
-
-    ggplot2::theme_classic()
+                       nudge_x = -.005, nudge_y = .005) +
+    ggplot2::geom_point(ggplot2::aes(x = 0, y = risk_free)) +
+    ggplot2::geom_text(ggplot2::aes(x = 0, y = risk_free, label = "R"),
+                       nudge_x = .005, nudge_y = .005) +
+    ggplot2::geom_path(data = cml_data, ggplot2::aes(x = sigma_c, y = mu_c))
 }
 
