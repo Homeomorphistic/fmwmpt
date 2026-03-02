@@ -569,9 +569,34 @@ Dlatego jeśli wszyscy inwestorzy wybierają ten sam portfel, musi to być portf
    3. Brak podatków.
    4. Brak kosztów transakcyjnych.
 
+
+## Inwestowanie pasywne
+
+- polega na śledzeniu indeksów,
+- przy minimalizowaniu kosztów (prowizji i podatków),
+- podąża za racjonalną teorią,
+- sprawdzone empirycznie
+
+Teoria jest dalej rozszerzana w formie **Teoria arbitrażu cenowego** (arbitrage pricing theory, APT).
+
+## Dla nieprzekonanych
+
+> "Diversification is the only free lunch in investing."  
+> — Harry Markowitz
+
+> "You have to talk yourself out of the market portfolio."  
+> — Eugene Fama
+
+> "Investing should be more like watching paint dry or watching grass grow."  
+> — Paul Samuelson
+
+
 ## Źródła
 
-Capiński M. J., Kopp, E., Portfolio Theory and Risk Management
+- YouTube, Ben Felix,
+- Spotify (i inne), Rational Reminder,
+- Elton E.J., Gruber M.J., Brown S.J., Goetzmann W.N. Modern Portfolio Theory and Investment Analysis,
+- Capiński M. J., Kopp, E., Portfolio Theory and Risk Management
 
 ## Dziękuję za uwagę
 ![](images/stonks_bc.jpg)
