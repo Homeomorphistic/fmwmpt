@@ -11,7 +11,7 @@ server: shiny
 ---
 
 ```{r setup}
-pkgload::load_all()
+library(fmwmpt)
 library(shinyWidgets)
 ```
 
