@@ -1,0 +1,14 @@
+name: fmw_mpt
+title:
+username: homeomorphic
+account: homeomorphic
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 16796417
+bundleId: 11651560
+url: https://homeomorphic.shinyapps.io/fmw_mpt/
+version: 1
+quarto_version: 1.8.27
+quarto_engines: knitr
+asMultiple: FALSE
+asStatic: FALSE
