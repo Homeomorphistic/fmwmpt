@@ -4,7 +4,7 @@
     "Repositories": [
       {
         "Name": "CRAN",
-        "URL": "https://packagemanager.posit.co/cran/latest"
+        "URL": "https://cloud.r-project.org"
       }
     ]
   },
@@ -537,14 +537,15 @@
     },
     "fmwmpt": {
       "Package": "fmwmpt",
-      "Version": "0.1.0",
+      "Version": "0.2.0",
       "Source": "GitHub",
+      "Remotes": "github::Homeomorphistic/fmwmpt",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "fmwmpt",
       "RemoteUsername": "Homeomorphistic",
       "RemoteRef": "HEAD",
-      "RemoteSha": "77bd1a61754e85484b6e1d369bc305ec0796e14e",
+      "RemoteSha": "7e9678b500357def6dd1c28b575f105c532f852d",
       "Requirements": [
         "DT",
         "R",
@@ -556,7 +557,7 @@
         "tidyquant",
         "tidyr"
       ],
-      "Hash": "009e49a48799a029bd18bfbaccdd2a99"
+      "Hash": "176a759eef188ce2a72652b42764495c"
     },
     "fontawesome": {
       "Package": "fontawesome",
