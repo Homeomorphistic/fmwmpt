@@ -1,7 +1,7 @@
 mod_attainable_set_sliders_ui <- function(id) {
   ns <- shiny::NS(id)
   shiny::tagList(
-    shiny::sliderInput(ns("rho"), "rho", min = -1, max = 1, value = 0, step = 0.01, post = "%")
+    shiny::sliderInput(ns("rho"), greek_html("rho"), min = -1, max = 1, value = 0, step = 0.01, post = "%")
   )
 }
 

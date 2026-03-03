@@ -3,8 +3,8 @@ mod_normal_densities_ui <- function(id) {
   shiny::tagList(
     shiny::tags$div(
       style = "display: flex; gap: 10px; align-items: flex-end;",
-      shiny::sliderInput(ns("mu"), "mu", min = -0.5, max = 0.5, value = 0, step = 0.01, post = "%"),
-      shiny::sliderInput(ns("sigma"), "sigma", min = 0, max = 1, value = 2, step = 0.01, post = "%")
+      shiny::sliderInput(ns("mu"), greek_html("mu"), min = -1, max = 1, value = 0, step = 0.1),
+      shiny::sliderInput(ns("sigma"), greek_html("sigma"), min = 0, max = 2, value = 1, step = 0.1)
     ),
     shiny::plotOutput(ns("normal_densities"))
   )

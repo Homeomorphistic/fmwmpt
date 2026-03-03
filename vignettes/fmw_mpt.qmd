@@ -11,7 +11,7 @@ server: shiny
 ---
 
 ```{r setup}
-library(fmwmpt)
+pkgload::load_all() #library(fmwmpt)
 library(shinyWidgets)
 ```
 
@@ -20,7 +20,7 @@ library(shinyWidgets)
 Niniejsza prezentacja ma charakter wyłącznie edukacyjny i nie stanowi rekomendacji finansowej. Żadna część tego materiału nie powinna być traktowana jako doradztwo inwestycyjne ani jako podstawa do podejmowania decyzji inwestycyjnych lub transakcji na rynkach finansowych.
 
 #
-![Wilk z Wall Street (film 2013), źródło: wikipedia](images/wolf_of_wall_street.jpg){fig-align="center"}
+![Wilk z Wall Street (film 2013), źródło: wikipedia](images/wolf_of_wall_street.jpg)
 
 :::{.notes}
 American biographical dark comedy crime film co-produced and directed by Martin Scorsese
@@ -71,10 +71,10 @@ $$
 # Współczesna teoria portfelowa
 
 ## Współczesna teoria portfelowa
-1. Papiery wartościowe,
+1. Aktywa na giełdzie,
 2. Ryzyko i zwrot,
-3. Portfele pap. wart.,
-4. Optymalna inwestycja
+3. Portfele inwestycyjne,
+4. Optymalna inwestycja.
 
 :::{.notes}
 Badanie optymalnej alokacji majątku pomiędzy poszczególne aktywa w portfelu inwestycyjnym, oparte na dwuetapowym celu maksymalizacji stopy zwrotu przy jednoczesnej minimalizacji ryzyka.
@@ -96,15 +96,14 @@ Badanie optymalnej alokacji majątku pomiędzy poszczególne aktywa w portfelu i
 ##
 ![](images/stonks.jpg)
 
-# 1. Papiery wartościowe
+# 1. Aktywa
 
-## Papiery wartościowe
-:::{.incremental}
+## Aktywa dostępne na giełdzie
 - akcje
 - obligacje
 - kontrakty, towary, kryptowaluty
-- fundusze inwestycyjny notowany na giełdzie (exchange-traded fund, ETF)
-:::
+- fundusze inwestycyjne notowany na giełdzie (exchange-traded fund, ETF)
+- i inne...
 
 ## Akcje
 ![źródło: YouYube, Primate Economics, Investing Explained with Bananas](images/pe_stocks.png)
@@ -152,7 +151,7 @@ Badanie optymalnej alokacji majątku pomiędzy poszczególne aktywa w portfelu i
 - towary:
   - złoto (XAUUSD, XAUPLN)
   - świńskie tusze (? Lean Hog futures)
-- kryptowaluty? (BTC, ETH)
+- kryptowaluty (BTC, ETH)
 
 ## Exchange-traded fund, ETF
 ![źródło: YouYube, Primate Economics, Investing Explained with Bananas](images/pe_index_funds.png)
@@ -181,18 +180,18 @@ mod_price_plots_server("price_plots")
 
 ## Zwrot
 - Celem inwestora jest wzrost majątku.
-- Wartości końcowe pap. wart. są niepewne*.
+- Wartości końcowe aktywów są niepewne*.
 - Stopy zwrotu modeluje się jako zmienne losowe.
 - Jedną miarą oceny jest wartość oczekiwana stopy zwrotu.
 
 
 ## Notacja
-$S_0$ to obecna (znana) cena, $S_t$ to przyszła (nieznana) cena po okresie $t$, którą nazywamy zmienną losową:
+$S_0$ to obecna (znana) cena, $S$ to przyszła (nieznana) cena po okresie $t$, którą nazywamy zmienną losową:
 
 $$
-S_t: \Omega \to \left[0, \infty \right),
+S: \Omega \to \left[0, \infty \right),
 $$
-np. $S_t(\omega_1) = 50$, $S_t(\omega_2) = 100$.
+np. $S(\omega_1) = 50$, $S(\omega_2) = 100$.
 
 Scenariusze $\omega_1, \omega_2, \ldots$, mają swoje prawdopodobieństwa:
 
@@ -204,8 +203,8 @@ $$
 
 $$
 \begin{align}
-\mathbb{E}(S_t) &= \sum_{\omega \in \Omega} S_t(\omega)\,P(\omega) \\
-                &= S_t(\omega_1)P(\omega_1) + S_t(\omega_2)P(\omega_2) \\
+\mathbb{E}(S) &= \sum_{\omega \in \Omega} S(\omega)\,P(\omega) \\
+                &= S(\omega_1)P(\omega_1) + S(\omega_2)P(\omega_2) \\
                 &= 50 \cdot 0.6 + 100 \cdot 0.4 \\
                 &= 70.
 \end{align}
@@ -221,11 +220,11 @@ co pozwala nam na przybliżenie wartości oczekiwanej średnią artymetyczną!**
 ## Zwrot
 Zwrot jest zmienną losową, bo nie jest znane $S_t$:
 $$
-K_t = \frac{S_t - S_0}{S_0},
+K = \frac{S - S_0}{S_0},
 $$
 a ze względu na liniowość wartości oczekiwanej
 $$
-\mu = \mathbb{E}(K_t) = \frac{\mathbb{E}(S_t) - S_0}{S_0}.
+\mu = \mathbb{E}(K) = \frac{\mathbb{E}(S) - S_0}{S_0}.
 $$
 
 ## Przykłady {.smaller}
@@ -241,7 +240,7 @@ mod_last_returns_server("last_returns")
 ![źródło: stooq.pl](images/sq_tbsp_wig.png)
 
 ## Ryzyko (c.d.)
-- Ryzyko wynika z niepewności przyszłych wartości pap. wart.
+- Ryzyko wynika z niepewności przyszłych wartości aktywów,
 - Większy rozrzut możliwych wyników, wyższe ryzyko.
 - Jedną miarą ryzyka jest zmienność (rozproszenie) stóp zwrotu.
 - Inwestorzy maksymalizują zwrot przy ograniczaniu ryzyka.
@@ -250,12 +249,13 @@ mod_last_returns_server("last_returns")
 ## Wariancja i odchylenie
 Wariancja zwrotu:
 $$
-\mathrm{Var}(K) = \mathbb{E}(K - \mu)^2,
+\sigma^2 = \mathrm{Var}(K) = \mathbb{E}(K - \mu)^2,
 $$
 i odchylenie standarowe:
 $$
-\sigma = \sqrt{\mathrm{Var}(K)}.
+\sigma = \sqrt{\mathrm{Var}(K)},
 $$
+które dalej będziemy nazywać zmiennością (volatility).
 
 ## Estymator wariancji
 $$
@@ -299,8 +299,8 @@ $$
 oraz że
 $$
 \begin{align*}
-S_t(\omega_1) &= 260, & S_t(\omega_2) &= 180, \\
-R_t(\omega_1) &= 270, & R_t(\omega_2) &= 360.
+S(\omega_1) &= 260, & S(\omega_2) &= 180, \\
+R(\omega_1) &= 270, & R(\omega_2) &= 360.
 \end{align*}
 $$
 
@@ -308,18 +308,18 @@ $$
 Oczekiwane stopy zwrotu i odchylenia standardowe dla obu aktywów wynoszą
 $$
 \begin{align*}
-\mu_1 &= 10\%, & \sigma_1 &= 20\%, \\
-\mu_2 &= 5\%,  & \sigma_2 &= 15\%.
+\mu_S &= 10\%, & \sigma_S &= 20\%, \\
+\mu_R &= 5\%,  & \sigma_R &= 15\%.
 \end{align*}
 $$
 Przyjmijmy, że wydajemy $V_0 = 500$, kupując jedną akcję spółki $S$ oraz jedną akcję spółki $R$. W czasie $t$ będziemy mieli
 $$
 \begin{align*}
-V_t(\omega_1) &= 260 + 270 = 530, \\
-V_t(\omega_2) &= 180 + 360 = 540.
+V(\omega_1) &= 260 + 270 = 530, \\
+V(\omega_2) &= 180 + 360 = 540.
 \end{align*}
 $$
-Oczekiwana stopa zwrotu z inwestycji wynosi $7\%$, a odchylenie standardowe jedynie $1\%$.
+Oczekiwana stopa zwrotu z inwestycji wynosi $7\%$, a zmienność jedynie $1\%$.
 
 ##
 ![](images/math-hmm.gif)
@@ -332,13 +332,13 @@ $$
 gdzie $x,y$ to ilość kupionych akcji.
 Ze wzgledu na różną skalę $x,y$ oraz cen akcji, wygodniej nam pracować z wagami:
 $$
-w_s = \frac{xS_0}{V_0}, \quad w_r = \frac{xR_0}{V_0}.
+w_S = \frac{xS_0}{V_0}, \quad w_R = \frac{xR_0}{V_0}.
 $$
-Dzieki temu mamy $w_s + w_r = 100\%$.
+Dzieki temu mamy $w_S + w_R = 100\%$.
 
 
 ## Ograniczenia wag
-Z definicji mamy $w_s + w_r = 1$. Ale czy możemy mieć:
+Z definicji mamy $w_S + w_R = 1$. Ale czy możemy mieć:
 
   - ułamkową liczbę akcji?
   - ujemną liczbę akcji?
@@ -348,15 +348,16 @@ Z definicji mamy $w_s + w_r = 1$. Ale czy możemy mieć:
   1. Pożycz jedną akcję $S$, tzn. $x = -1$.
   2. Sprzedaj akcję za $S_0 = 100$, dzięki czemu $V_0 = 100$. 
   3. Po czasie $t$ odkup akcję $S$:
-      - cena spadła $S_t = 90$ i zyskaj $V_t = 100 - 90 =10$,
-      - cena urosła $S_t = 105$ i strać $V_t = 100 - 105 = -5$,
+      - cena spadła $S = 90$ i zyskaj $V = 100 - 90 =10$,
+      - cena urosła $S = 105$ i strać $V = 100 - 105 = -5$,
+  4. Oddaj odkupioną akcję.
 
 
 ## Stopa zwrotu portfela
 ::: {#thm-portfolio-return}
 
 
-Stopa zwrotu $K(w)$ portfela składającego się z dwóch aktywów jest średnią ważoną
+Stopa zwrotu $K_w$ portfela składającego się z dwóch aktywów jest średnią ważoną
 $$K_w = w_1 K_1 + w_2 K_2,$$
 gdzie $w_1$ i $w_2$ są wagami, a $K_1$ i $K_2$ stopami zwrotu z obu składników.
 :::
@@ -383,16 +384,26 @@ Pozostawiamy czytelnikowi.
 :::
 
 ## Własności korelacji
-- Mierzy siłę i kierunek liniowej zależności między dwiema zmiennymi.
+- Mierzy siłę i kierunek **liniowej zależności** między dwiema zmiennymi.
 - Przyjmuje wartości od -1 do 1.
 - Dodatnia oznacza, że zmienne rosną razem
 - Ujemna oznacza, że jedna rośnie gdy druga maleje
 - Zerowa oznacza, że nie ma między nimi liniowej zależności.
 
 ## Wizualizacja korelacji
+:::: {.columns}
+
+::: {.column width="20%"}
 ```{r}
-mod_correlated_normals_ui("correlation")
+mod_correlated_normals_slider_ui("correlation")
 ```
+:::
+::: {.column width="80%"}
+```{r}
+mod_correlated_normals_plot_ui("correlation")
+```
+:::
+::::
 ```{r}
 #| context: server 
 mod_correlated_normals_server("correlation")
@@ -533,7 +544,8 @@ mod_rw_mp_server("rw_mp")
 ## Inwestorzy w świecie MPT
 Zakładamy, że:
 
-- rynek składa się dwóch papierów wartościowych,
+- rynek składa się dwóch ryzykownych aktywów,
+- inwestorzy mają dostęp do takiej samej stopy wolnej od ryzyka,
 - inwestorzy są racjonalni,
 - inwestorzy używają tych samych danych liczbowych.
 

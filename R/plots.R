@@ -21,10 +21,25 @@ plot_prices_with_sim <- function(ticker, from, to) {
 
 plot_normal_densities <- function(mu, sigma) {
   ggplot2::ggplot() +
-    ggplot2::stat_function(fun = dnorm, args = list(mean = 0, sd = 1), ggplot2::aes(color = "N(0,1)")) +
-    ggplot2::stat_function(fun = dnorm, args = list(mean = mu, sd = sigma),
-                           ggplot2::aes(color = sprintf("N(%g, %g)", mu, sigma))) +
-    ggplot2::xlim(-4 * sigma, 4 * sigma) +
+    ggplot2::stat_function(
+      fun = dnorm,
+      args = list(mean = 0, sd = 1),
+      ggplot2::aes(color = "standard")
+    ) +
+    ggplot2::stat_function(
+      fun = dnorm,
+      args = list(mean = mu, sd = sigma),
+      ggplot2::aes(color = "shifted")
+    ) +
+    ggplot2::scale_color_manual(
+      values = c(standard = "blue", shifted = "red"),
+      labels = c(
+        standard = "N(0,1)",
+        shifted  = sprintf("N(%g, %g)", mu, sigma)
+      )
+    ) +
+    ggplot2::xlim(-4, 4) +
+    ggplot2::ylim(0, 0.5) +
     ggplot2::labs(color = "distribution", x = "x", y = "density") +
     ggplot2::theme(legend.position = "top")
 }

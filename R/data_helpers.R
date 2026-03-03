@@ -13,3 +13,8 @@ available_tickers <- function() {
     dplyr::distinct(symbol) |>
     dplyr::pull(symbol)
 }
+
+greek_html <- function(symbol, text="") {
+  sprintf("&%s; %s", symbol, text) |>
+    shiny::HTML()
+}

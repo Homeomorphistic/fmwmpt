@@ -4,7 +4,7 @@ examples <- tidyquant::tq_get(
     "BTC-USD", "GC=F",
     "AGGU.L", "VWRA.L"),
   from = as.Date("2020-01-01"),
-  to   = as.Date("2026-03-01")
+  to   = as.Date("2025-12-31")
 )
 
 usethis::use_data(examples, overwrite = TRUE)
