@@ -35,12 +35,12 @@ American biographical dark comedy crime film co-produced and directed by Martin 
 - clickbait
 :::
 
-## Jak matematyk zadałby takie pytanie?
+## Jak sformalizowałby to matematyk?
 :::{.incremental}
 - Mamy dostępne papiery wartościowe na giełdzie
 - Które z nich wybrać, żeby zyskać najwięcej?
 - I najmniej ryzykować?
-- Jak to sformalizować problem?
+- Jak to zapisać matematycznie?
 :::
 
 ## Formalizacja problemu
@@ -106,22 +106,22 @@ Badanie optymalnej alokacji majątku pomiędzy poszczególne aktywa w portfelu i
 - i inne...
 
 ## Akcje
-![źródło: YouYube, Primate Economics, Investing Explained with Bananas](images/pe_stocks.png)
+![źródło: YouTube, Primate Economics, Investing Explained with Bananas](images/pe_stocks.png)
 
 ## Akcje (c.d.)
 :::{.incremental}
 - polskie (GPW, WIG20):
   - ALE,
   - CDR,
-  - ZAB 
-- amerykańskie (NYSE, SP500): 
+  - ZAB
+- amerykańskie (NYSE, SP500):
   - NVDA,
   - AAPL,
-  - AMZN 
+  - AMZN
 :::
 
 ## Obligacje
-![źródło: YouYube, Primate Economics, Investing Explained with Bananas](images/pe_bonds.png)
+![źródło: YouTube, Primate Economics, Investing Explained with Bananas](images/pe_bonds.png)
 
 ## Obligacje (c.d.)
 - skarbowe:
@@ -136,11 +136,11 @@ Badanie optymalnej alokacji majątku pomiędzy poszczególne aktywa w portfelu i
 :::: {.columns}
 
 ::: {.column width="50%"}
-![źródło: YouYube, Primate Economics, Investing Explained with Bananas](images/pe_commodities.png)
+![źródło: YouTube, Primate Economics, Investing Explained with Bananas](images/pe_commodities.png)
 :::
 
 ::: {.column width="50%"}
-![źródło: YouYube, Primate Economics, Investing Explained with Bananas](images/pe_crypto.png)
+![źródło: YouTube, Primate Economics, Investing Explained with Bananas](images/pe_crypto.png)
 :::
 ::::
 
@@ -154,7 +154,7 @@ Badanie optymalnej alokacji majątku pomiędzy poszczególne aktywa w portfelu i
 - kryptowaluty (BTC, ETH)
 
 ## Exchange-traded fund, ETF
-![źródło: YouYube, Primate Economics, Investing Explained with Bananas](images/pe_index_funds.png)
+![źródło: YouTube, Primate Economics, Investing Explained with Bananas](images/pe_index_funds.png)
 
 ## Exchange-traded fund, ETF (c.d.)
 - globalne:
@@ -218,7 +218,7 @@ $$
 co pozwala nam na przybliżenie wartości oczekiwanej średnią artymetyczną!**
 
 ## Zwrot
-Zwrot jest zmienną losową, bo nie jest znane $S_t$:
+Zwrot jest zmienną losową, bo nie jest znane $S$:
 $$
 K = \frac{S - S_0}{S_0},
 $$
@@ -232,7 +232,7 @@ $$
 mod_last_returns_ui("last_returns")
 ```
 ```{r}
-#| context: server 
+#| context: server
 mod_last_returns_server("last_returns")
 ```
 
@@ -259,7 +259,7 @@ które dalej będziemy nazywać zmiennością (volatility).
 
 ## Estymator wariancji
 $$
-S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2,
+\frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2,
 $$
 gdzie
 $$
@@ -271,7 +271,7 @@ $$
 mod_stocks_summary_ui("summary")
 ```
 ```{r}
-#| context: server 
+#| context: server
 mod_stocks_summary_server("summary")
 ```
 
@@ -281,7 +281,7 @@ mod_stocks_summary_server("summary")
 mod_normal_densities_ui("densities")
 ```
 ```{r}
-#| context: server 
+#| context: server
 mod_normal_densities_server("densities")
 ```
 
@@ -291,7 +291,7 @@ mod_normal_densities_server("densities")
 # 3. Portfele zawierające dwa aktywa
 
 ## Przykład dywersyfikacji
-Niech $\Omega = \{\omega_1, \omega_2\}$, $S_0 = 200$, $R_0 = 300$. Przyjmijmy, że
+Niech $\Omega = \{\omega_1, \omega_2\}$, $S_0 = 200$, $U_0 = 300$. Przyjmijmy, że
 
 $$
 P(\{\omega_1\}) = P(\{\omega_2\}) = 50\%,
@@ -300,7 +300,7 @@ oraz że
 $$
 \begin{align*}
 S(\omega_1) &= 260, & S(\omega_2) &= 180, \\
-R(\omega_1) &= 270, & R(\omega_2) &= 360.
+U(\omega_1) &= 270, & U(\omega_2) &= 360.
 \end{align*}
 $$
 
@@ -309,10 +309,10 @@ Oczekiwane stopy zwrotu i odchylenia standardowe dla obu aktywów wynoszą
 $$
 \begin{align*}
 \mu_S &= 10\%, & \sigma_S &= 20\%, \\
-\mu_R &= 5\%,  & \sigma_R &= 15\%.
+\mu_U &= 5\%,  & \sigma_U &= 15\%.
 \end{align*}
 $$
-Przyjmijmy, że wydajemy $V_0 = 500$, kupując jedną akcję spółki $S$ oraz jedną akcję spółki $R$. W czasie $t$ będziemy mieli
+Przyjmijmy, że wydajemy $V_0 = 500$, kupując jedną akcję spółki $S$ oraz jedną akcję spółki $U$. W czasie $t$ będziemy mieli
 $$
 \begin{align*}
 V(\omega_1) &= 260 + 270 = 530, \\
@@ -325,20 +325,20 @@ Oczekiwana stopa zwrotu z inwestycji wynosi $7\%$, a zmienność jedynie $1\%$.
 ![](images/math-hmm.gif)
 
 ## Wagi
-Przyjmijmy, że mamy $V_0$ do wydania na akcje $S$ oraz $R$, wtedy:
+Przyjmijmy, że mamy $V_0$ do wydania na akcje $S$ oraz $U$, wtedy:
 $$
-V_0 = xS_0 + yR_0,
+V_0 = xS_0 + yU_0,
 $$
 gdzie $x,y$ to ilość kupionych akcji.
 Ze wzgledu na różną skalę $x,y$ oraz cen akcji, wygodniej nam pracować z wagami:
 $$
-w_S = \frac{xS_0}{V_0}, \quad w_R = \frac{xR_0}{V_0}.
+w_S = \frac{xS_0}{V_0}, \quad w_U = \frac{xU_0}{V_0}.
 $$
-Dzieki temu mamy $w_S + w_R = 100\%$.
+Dzieki temu mamy $w_S + w_U = 100\%$.
 
 
 ## Ograniczenia wag
-Z definicji mamy $w_S + w_R = 1$. Ale czy możemy mieć:
+Z definicji mamy $w_S + w_U = 1$. Ale czy możemy mieć:
 
   - ułamkową liczbę akcji?
   - ujemną liczbę akcji?
@@ -346,7 +346,7 @@ Z definicji mamy $w_S + w_R = 1$. Ale czy możemy mieć:
 
 ## Krótka sprzedaż
   1. Pożycz jedną akcję $S$, tzn. $x = -1$.
-  2. Sprzedaj akcję za $S_0 = 100$, dzięki czemu $V_0 = 100$. 
+  2. Sprzedaj akcję za $S_0 = 100$, dzięki czemu $V_0 = 100$.
   3. Po czasie $t$ odkup akcję $S$:
       - cena spadła $S = 90$ i zyskaj $V = 100 - 90 =10$,
       - cena urosła $S = 105$ i strać $V = 100 - 105 = -5$,
@@ -405,7 +405,7 @@ mod_correlated_normals_plot_ui("correlation")
 :::
 ::::
 ```{r}
-#| context: server 
+#| context: server
 mod_correlated_normals_server("correlation")
 ```
 
@@ -440,14 +440,22 @@ mod_attainable_set_plot_ui("attainable")
 ::::
 
 ```{r}
-#| context: server 
+#| context: server
 mod_attainable_set_server("attainable")
 ```
 
+## Aktywo wolne od ryzyka
+Aktywo wolne od ryzyka, to takie, które $\mu=R>0$ oraz $\sigma=0$. W finansach
+często nazywa się je **gotówką**. Przykłady:
 
-## Stopa wolna od ryzyka
-Aktywo wolne od ryzyka, to takie, które $\mu=R>0$ oraz $\sigma=0$. Rozważmy portfel, w którym pierwsze
-aktywo jest wolne od ryzyka. Wtedy
+:::{.incremental}
+- konto oszczędnościowe,
+- lokata,
+- krótkoterminowe obligacje (np. bony skarbowe)
+:::
+
+## Aktywo wolne od ryzyka
+Rozważmy portfel, w którym pierwsze aktywo jest wolne od ryzyka. Wtedy
 $$
 \begin{align}
   \mu_w &= w R + (1-w) \mu_2, \\
@@ -459,18 +467,11 @@ $$
 \sigma_w = |w \sigma_2|
 $$
 
-## Dodanie aktywa wolnego od ryzyka
-:::: {.columns}
-
-::: {.column width="50%"}
+## Aktywo wolne od ryzyka (c.d)
 ![źródło: Capiński M. J., Kopp, E., Portfolio Theory and Risk Management](images/risk_free_rate.png)
-:::
 
-::: {.column width="50%"}
-![](images/risk_free_rate2.png)
-:::
-
-::::
+## Optymalna inwestycja
+![źródło: Capiński M. J., Kopp, E., Portfolio Theory and Risk Management](images/risk_free_rate2.png)
 
 ## Portfel rynkowy
 :::: {.columns}
@@ -490,7 +491,7 @@ mod_market_portfolio_plot_ui("mp")
 ::::
 
 ```{r}
-#| context: server 
+#| context: server
 mod_market_portfolio_server("mp")
 ```
 
@@ -541,11 +542,10 @@ mod_rw_mp_server("rw_mp")
 
 # Wnioski
 
-## Inwestorzy w świecie MPT
+## Wagi portfela rynkowego
 Zakładamy, że:
 
-- rynek składa się dwóch ryzykownych aktywów,
-- inwestorzy mają dostęp do takiej samej stopy wolnej od ryzyka,
+- inwestorzy mają dostęp do tych samych aktywów,
 - inwestorzy są racjonalni,
 - inwestorzy używają tych samych danych liczbowych.
 
@@ -554,10 +554,13 @@ Zatem, inwestorzy dokonują tych samych obliczeń i dochodzą do tej samej propo
 **Waga każdego aktywa w portfelu rynkowym odzwierciedla jego udział w całkowitej wartości rynku!**
 
 
+## Przykład
+Na rynku dostępne są tylko dwie firmy, $A$ i $B$, warte odpowiednio 1 mln zł i 3 mln zł.
+Wtedy portfel rynkowy będzie zawierał $25\%$ akcji firmy $A$ i $75\%$ akcji firmy B.
+
+
 ## Dlaczego?
 Ponieważ portfel rynkowy jest agregacją wszystkich portfeli inwestorów, z których każdy jest identyczny, również będzie miał te same wagi.
-
-Dlatego jeśli wszyscy inwestorzy wybierają ten sam portfel, musi to być portfel rynkowy, czyli wartość całego dostępnego do inwestowania rynku.
 
 
 ## Czy można zostać wilkiem?
@@ -573,13 +576,14 @@ Dlatego jeśli wszyscy inwestorzy wybierają ten sam portfel, musi to być portf
 1. Zachowanie indywidualne
    1. Inwestorzy są racjonalni i optymalizują portfel w ujęciu średnia-wariancja.
    2. Wspólny horyzont planowania to jeden okres.
-   3. Wszyscy inwestorzy korzystają z identycznych zestawów danych wejściowych. Oczekiwania są zgodne z założeniem, że wszystkie istotne informacje są publicznie dostępne.
+   3. Wszyscy inwestorzy korzystają z identycznych zestawów danych wejściowych.
 
 2. Struktura rynku
    1. Wszystkie aktywa są publicznie dostępne i notowane na giełdach.
-   2. Inwestorzy mogą pożyczać lub lokować środki po wspólnej stopie wolnej od ryzyka oraz zajmować krótkie pozycje w notowanych papierach.
-   3. Brak podatków.
-   4. Brak kosztów transakcyjnych.
+   2. Inwestorzy mogą pożyczać lub lokować środki po wspólnej stopie wolnej od ryzyka
+   3. Inwestorzy mogą zajmować krótkie pozycje w notowanych papierach.
+   4. Brak podatków.
+   5. Brak kosztów transakcyjnych.
 
 
 ## Inwestowanie pasywne
@@ -593,13 +597,13 @@ Teoria jest dalej rozszerzana w formie **Teoria arbitrażu cenowego** (arbitrage
 
 ## Dla nieprzekonanych
 
-> "Diversification is the only free lunch in investing."  
+> "Diversification is the only free lunch in investing."
 > — Harry Markowitz
 
-> "You have to talk yourself out of the market portfolio."  
+> "You have to talk yourself out of the market portfolio."
 > — Eugene Fama
 
-> "Investing should be more like watching paint dry or watching grass grow."  
+> "Investing should be more like watching paint dry or watching grass grow."
 > — Paul Samuelson
 
 
